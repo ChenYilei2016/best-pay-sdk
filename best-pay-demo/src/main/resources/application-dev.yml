@@ -1,17 +1,22 @@
+#微信支付
 wechat:
-  mpAppId: wxd898xxxx
-  mchId: 1483xxxx
-  mchKey: C5245D70xxxxx
-  keyPath: /var/weixin_cert/wxpay.p12
-  notifyUrl: http://xxx.com/notify
-  miniAppId: wxxxxxxxxxxx6bf9b
-  miniAppSecret: xxbc6xxxxxxxxxxxxxx9c49d
-  appAppId: wxxxxxxxxxxxx43b0
+  mpAppId: wx8397f8696b538317
+  mchId: 1473426802
+  mchKey: T6m9iK73b0kn9g5v426MKfHQH7X8rKwb
+  notifyUrl: http://chenyilei.mynatapp.cc/notify
+  #  keyPath: /var/weixin_cert/wxpay.p12
+#  miniAppId: wxxxxxxxxxxx6bf9b
+#  miniAppSecret: xxbc6xxxxxxxxxxxxxx9c49d
+#  appAppId: wx8397f8696b538317
 
+#支付宝支付
 alipay:
-  appId: appId
-  privateKey: 商户私钥
-  aliPayPublicKey: 支付宝公钥
-  notifyUrl: http://xxx.com/notify
-  returnUrl: http://xxx.com/return
+  appId: 2016101400682523
+  privateKey: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDoHiDchdEwI1bV820UsH1AX21TOyN55tXhexWh9M+CDsgDJstQDm61KOnt0jYYIYrboEV5RL4oQZfp2yH8flH87Z/dXOqRoNIRI+HlzGO879ecbdv4qhxsZRaZF59/LAy3yNIOBBaQ1NX5HAniN6Or9RRw/iMPZkFDXs4HZRBg/lzLz9A4tmUmB5BcJmBKQeNzPFSjHXNVTfVXKQtEKhp4hQmehBCZkXGYAw22u70K6rBqiGG++nPBX89C8E4mPcz/xNU6CEe96OmfY84q0f5xzMakPzO4OrGErubIh+93TqsQ5KM6rJJafnaRqvwkUcsZ02Ch2hO6ABwoIihsyv/1AgMBAAECggEARSK0Jvq0k+Hyu0cF9mOa6tGBfojeyDA5BC/lAZgpNlOwvz+Ozwl9b/f/tRYnhoh3E3NpPfV7rgHbfYwHU21MfklIlGZYd4evCevmHMwD6QKG9dDC9A226ZIyaObgWsCECTmHVyVgk0LReKEhUH/CADW/IOiRCMUsKyTRuOIhPsHzETREKJJMj957uDqBru3yATJgQ6H8QOUGoPf004piD52RdahL1aZAG04xrikAaPmqN6UyqssBfn9sscb0UpyaCE+lP5XKSRzrD2Ye4vV7nn3a6Y2oXdbIwVXgrj12f1xJtWgqbsZnE05jc2MXV6YmkD2q2TYPsyRRfhx0KSuwAQKBgQD9FWl2p0vnwHsNZ23aJHRBfEnq3kgzN/RO9jM+4VFyuRGoH/7JQ9Ffsb6ch20rO4uhyC++EDsGXSU7KrUVP9jAcNnygvvAc3TpqEBRqwO3EkEzlUfNnMER41Em+Er8hVA96W8Cg6jzv+hbE5TBHrv0diIZxj7th79lin74jbTBsQKBgQDqyt4Yj3FY21T2fNKfn7kOdgzVVgKTl3U/5m83q+EvYXLyctoIaTzYzb0jLHBfNrA4y0Web9PUgZgEwse7gJyzGoqaVOklhYhMmpXelVyQ+TsVerWx6s3kI+b0o1uF30grdAZqsi1M2azkEpCiVIQ8U3rIp/l1ZMVE2k6X4FkPhQKBgQCD1JV9IyQc8lym3MuSKA8O1YlDeMovM+RlBUYoaQIeOl0CMLhtapAzwsjBjKHHNVtEyJxl6tp0NCzipxpwmTN0+tPsyWIOG5Y46FWotOZYhH/GOOqQJilEAh8Rp6CX7XGg7mnO63okjkCgwJBqEHJjou2cc3HwFRgT8pK1MkuH4QKBgQDUBmrVpwNmiHqLNGFHgIcuxfAE3uzot0dMcx1QGsj5bnjM9GZsXgxyhCgekUzQzqQIRZgS4U1bg8Px2KthaV0YaAluIOuB1Lom4xofrKWwzUBLv0pA5pcTRFCV7scBd4bGprn8s/YwhgmY1CMEVGotx/0DIp0lI+D4smNyx0fluQKBgERVcyi1Uk/FISfLYsDnSmoYmRB+4O5K/3wwNAvNyI6FYYZvzhrwklu//CUM8Fo/Qg5yI0wT3yFEYCrYfMio/Xw7ClJVLtSNhLXOQmYDhiqvGgGCl9JUxA1twDKCunAnWVP6H9YzzsilI787IjAavuAr3ALg41/IrHZEI6Tt/UJ1
+  aliPayPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAk8x6NCDhyXFeM/PkwpsQstihiYWnjJLAHlAlXTqXbIYKyQNYJb6Lij8eIISQg91j2MX9qBBApDtVq2mwZKr77ON2axFyw4n6qHS5NKt7b2S1pIduM4EEcOrb7Z9J3rCMGxkm9YGHM3mcf8tapwNcEM5M7aPlqYFmoY/wrbUmBHxXXitcGpgFZgyp28SgEOB9UJhUzkSjESteGyPNw0GLdFrUcCXGrYS28cx4oQ08zabCDMIPRKJ8ckXCZwymNF0oxlyRNiSdDTD5zh/EYaUVRkPDEBUqWKn14vB2zsW9mZQ1ptJ/8nWvjwIM1GRa26ki8HJ9SWbgUzFFGR7yGNVhpQIDAQAB
+  notifyUrl: http://chenyilei.mynatapp.cc/notify
+  returnUrl: http://www.baidu.com
   sandbox: true #是否使用沙箱
+
+server:
+  port: 80

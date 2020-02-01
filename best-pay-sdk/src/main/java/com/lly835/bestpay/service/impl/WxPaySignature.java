@@ -14,6 +14,7 @@ import java.util.TreeMap;
 public class WxPaySignature {
     /**
      * 签名
+     *
      * @param params
      * @param signKey
      * @return
@@ -36,6 +37,7 @@ public class WxPaySignature {
     /**
      * 签名for App
      * https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_12&index=2
+     *
      * @param params
      * @param signKey
      * @return
@@ -57,11 +59,12 @@ public class WxPaySignature {
 
     /**
      * 校验签名
+     *
      * @param params
      * @param privateKey
      * @return
      */
-    public static Boolean verify(Map<String, String> params,  String privateKey) {
+    public static Boolean verify(Map<String, String> params, String privateKey) {
         String sign = sign(params, privateKey);
         return sign.equals(params.get("sign"));
     }

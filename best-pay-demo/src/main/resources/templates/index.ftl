@@ -67,9 +67,11 @@
         </footer>
     </body>
 
-    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.qrcode.min.js"></script>
+    <#--<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>-->
     <script src="https://cdn.bootcss.com/twitter-bootstrap/3.0.1/js/bootstrap.min.js"></script>
-    <script src="https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <#--<script src="https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>-->
     <script>
         $(function () {
             genOrderId()

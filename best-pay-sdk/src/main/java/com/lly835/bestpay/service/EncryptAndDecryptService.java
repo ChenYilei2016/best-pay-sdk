@@ -9,6 +9,7 @@ public interface EncryptAndDecryptService {
 
     /**
      * 加密
+     *
      * @param key
      * @param data
      * @return
@@ -18,6 +19,7 @@ public interface EncryptAndDecryptService {
 
     /**
      * 解密
+     *
      * @param key
      * @param data
      * @return

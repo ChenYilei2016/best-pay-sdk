@@ -67,11 +67,11 @@ public class WxPayServiceImpl extends BestPayServiceImpl {
         wxRequest.setTradeType(request.getPayTypeEnum().getCode());
 
         //小程序和app支付有独立的appid，公众号、h5、native都是公众号的appid
-        if (request.getPayTypeEnum() == BestPayTypeEnum.WXPAY_MINI){
+        if (request.getPayTypeEnum() == BestPayTypeEnum.WXPAY_MINI) {
             wxRequest.setAppid(wxPayConfig.getMiniAppId());
-        }else if (request.getPayTypeEnum() == BestPayTypeEnum.WXPAY_APP){
+        } else if (request.getPayTypeEnum() == BestPayTypeEnum.WXPAY_APP) {
             wxRequest.setAppid(wxPayConfig.getAppAppId());
-        }else {
+        } else {
             wxRequest.setAppid(wxPayConfig.getAppId());
         }
         wxRequest.setMchId(wxPayConfig.getMchId());
@@ -83,20 +83,20 @@ public class WxPayServiceImpl extends BestPayServiceImpl {
 
         RequestBody body = RequestBody.create(MediaType.parse("application/xml; charset=utf-8"), XmlUtil.toString(wxRequest));
         Call<WxPaySyncResponse> call = retrofit.create(WxPayApi.class).unifiedorder(body);
-        Response<WxPaySyncResponse> retrofitResponse  = null;
-        try{
+        Response<WxPaySyncResponse> retrofitResponse = null;
+        try {
             retrofitResponse = call.execute();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-		assert retrofitResponse != null;
-		if (!retrofitResponse.isSuccessful()) {
+        assert retrofitResponse != null;
+        if (!retrofitResponse.isSuccessful()) {
             throw new RuntimeException("【微信统一支付】发起支付, 网络异常");
         }
         WxPaySyncResponse response = retrofitResponse.body();
 
-		assert response != null;
-		if(!response.getReturnCode().equals(WxPayConstants.SUCCESS)) {
+        assert response != null;
+        if (!response.getReturnCode().equals(WxPayConstants.SUCCESS)) {
             throw new RuntimeException("【微信统一支付】发起支付, returnCode != SUCCESS, returnMsg = " + response.getReturnMsg());
         }
         if (!response.getResultCode().equals(WxPayConstants.SUCCESS)) {
@@ -118,6 +118,7 @@ public class WxPayServiceImpl extends BestPayServiceImpl {
 
     /**
      * 异步通知
+     *
      * @param notifyData
      * @return
      */
@@ -132,7 +133,7 @@ public class WxPayServiceImpl extends BestPayServiceImpl {
         //xml解析为对象
         WxPayAsyncResponse asyncResponse = (WxPayAsyncResponse) XmlUtil.toObject(notifyData, WxPayAsyncResponse.class);
 
-        if(!asyncResponse.getReturnCode().equals(WxPayConstants.SUCCESS)) {
+        if (!asyncResponse.getReturnCode().equals(WxPayConstants.SUCCESS)) {
             throw new RuntimeException("【微信支付异步通知】发起支付, returnCode != SUCCESS, returnMsg = " + asyncResponse.getReturnMsg());
         }
         //该订单已支付直接返回
@@ -150,6 +151,7 @@ public class WxPayServiceImpl extends BestPayServiceImpl {
 
     /**
      * 微信退款
+     *
      * @param request
      * @return
      */
@@ -182,12 +184,12 @@ public class WxPayServiceImpl extends BestPayServiceImpl {
                 .client(okHttpClient)
                 .build();
         String xml = XmlUtil.toString(wxRequest);
-        RequestBody body = RequestBody.create(MediaType.parse("application/xml; charset=utf-8"),xml);
+        RequestBody body = RequestBody.create(MediaType.parse("application/xml; charset=utf-8"), xml);
         Call<WxRefundResponse> call = retrofit.create(WxPayApi.class).refund(body);
-        Response<WxRefundResponse> retrofitResponse  = null;
-        try{
+        Response<WxRefundResponse> retrofitResponse = null;
+        try {
             retrofitResponse = call.execute();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         if (!retrofitResponse.isSuccessful()) {
@@ -195,7 +197,7 @@ public class WxPayServiceImpl extends BestPayServiceImpl {
         }
         WxRefundResponse response = retrofitResponse.body();
 
-        if(!response.getReturnCode().equals(WxPayConstants.SUCCESS)) {
+        if (!response.getReturnCode().equals(WxPayConstants.SUCCESS)) {
             throw new RuntimeException("【微信退款】发起退款, returnCode != SUCCESS, returnMsg = " + response.getReturnMsg());
         }
         if (!response.getResultCode().equals(WxPayConstants.SUCCESS)) {
@@ -224,10 +226,10 @@ public class WxPayServiceImpl extends BestPayServiceImpl {
         RequestBody body = RequestBody.create(MediaType.parse("application/xml; charset=utf-8"), XmlUtil.toString(wxRequest));
 
         Call<WxOrderQueryResponse> call = retrofit.create(WxPayApi.class).orderquery(body);
-        Response<WxOrderQueryResponse> retrofitResponse  = null;
-        try{
+        Response<WxOrderQueryResponse> retrofitResponse = null;
+        try {
             retrofitResponse = call.execute();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         assert retrofitResponse != null;
@@ -237,7 +239,7 @@ public class WxPayServiceImpl extends BestPayServiceImpl {
         WxOrderQueryResponse response = retrofitResponse.body();
 
         assert response != null;
-        if(!response.getReturnCode().equals(WxPayConstants.SUCCESS)) {
+        if (!response.getReturnCode().equals(WxPayConstants.SUCCESS)) {
             throw new RuntimeException("【微信订单查询】returnCode != SUCCESS, returnMsg = " + response.getReturnMsg());
         }
         if (!response.getResultCode().equals(WxPayConstants.SUCCESS)) {
@@ -247,9 +249,9 @@ public class WxPayServiceImpl extends BestPayServiceImpl {
         return OrderQueryResponse.builder()
                 .orderStatusEnum(OrderStatusEnum.findByName(response.getTradeState()))
                 .resultMsg(response.getTradeStateDesc())
-				.outTradeNo(response.getTransactionId())
+                .outTradeNo(response.getTransactionId())
                 .orderId(response.getOutTradeNo())
-				.attach(response.getAttach())
+                .attach(response.getAttach())
                 //yyyyMMddHHmmss -> yyyy-MM-dd HH:mm:ss
                 .finishTime(StringUtils.isEmpty(response.getTimeEnd()) ? "" : response.getTimeEnd().replaceAll("(\\d{4})(\\d{2})(\\d{2})(\\d{2})(\\d{2})(\\d{2})", "$1-$2-$3 $4:$5:$6"))
                 .build();
@@ -278,6 +280,7 @@ public class WxPayServiceImpl extends BestPayServiceImpl {
 
     /**
      * 返回给h5的参数
+     *
      * @param response
      * @return
      */
@@ -303,7 +306,7 @@ public class WxPayServiceImpl extends BestPayServiceImpl {
         payResponse.setCodeUrl(response.getCodeUrl());
 
         //区分APP支付，不需要拼接prepay_id, package="Sign=WXPay"
-        if(response.getTradeType().equals(BestPayTypeEnum.WXPAY_APP.getCode())) {
+        if (response.getTradeType().equals(BestPayTypeEnum.WXPAY_APP.getCode())) {
             String packAge = "Sign=WXPay";
             map.put("package", packAge);
             map.put("prepayid", prepayId);
@@ -312,7 +315,7 @@ public class WxPayServiceImpl extends BestPayServiceImpl {
             payResponse.setPaySign(WxPaySignature.signForApp(map, wxPayConfig.getMchKey()));
             payResponse.setPrepayId(prepayId);
             return payResponse;
-        }else {
+        } else {
             prepayId = "prepay_id=" + prepayId;
             map.put("package", prepayId);
             map.put("signType", signType);
@@ -323,7 +326,6 @@ public class WxPayServiceImpl extends BestPayServiceImpl {
     }
 
     /**
-     *
      * @param request
      * @return
      */
@@ -340,10 +342,10 @@ public class WxPayServiceImpl extends BestPayServiceImpl {
         RequestBody body = RequestBody.create(MediaType.parse("application/xml; charset=utf-8"), XmlUtil.toString(wxRequest));
 
         Call<ResponseBody> call = retrofit.create(WxPayApi.class).downloadBill(body);
-        Response<ResponseBody> retrofitResponse  = null;
-        try{
+        Response<ResponseBody> retrofitResponse = null;
+        try {
             retrofitResponse = call.execute();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -356,8 +358,8 @@ public class WxPayServiceImpl extends BestPayServiceImpl {
             response = retrofitResponse.body().string();
 
             //如果返回xml格式，表示返回异常
-            if(response.startsWith("<")) {
-                WxDownloadBillResponse downloadBillResponse =  (WxDownloadBillResponse)XmlUtil.toObject(response,
+            if (response.startsWith("<")) {
+                WxDownloadBillResponse downloadBillResponse = (WxDownloadBillResponse) XmlUtil.toObject(response,
                         WxDownloadBillResponse.class);
                 throw new RuntimeException("【对账文件】返回异常 错误码: " +
                         downloadBillResponse.getErrorCode() +
@@ -374,6 +376,7 @@ public class WxPayServiceImpl extends BestPayServiceImpl {
 
     /**
      * 根据微信规则生成扫码二维码的URL
+     *
      * @return
      */
     @Override

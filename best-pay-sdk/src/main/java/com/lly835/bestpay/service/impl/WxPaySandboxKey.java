@@ -41,10 +41,10 @@ public class WxPaySandboxKey {
         String xml = XmlUtil.toString(sandboxParam);
         RequestBody body = RequestBody.create(MediaType.parse("application/xml; charset=utf-8"), xml);
         Call<WxPaySandboxKeyResponse> call = retrofit.create(WxPayApi.class).getsignkey(body);
-        Response<WxPaySandboxKeyResponse> retrofitResponse  = null;
-        try{
+        Response<WxPaySandboxKeyResponse> retrofitResponse = null;
+        try {
             retrofitResponse = call.execute();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         if (!retrofitResponse.isSuccessful()) {
